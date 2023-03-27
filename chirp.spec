@@ -5,7 +5,7 @@
 #
 Name     : chirp
 Version  : 20230322
-Release  : 1
+Release  : 2
 URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230322/chirp-20230322.tar.gz
 Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230322/chirp-20230322.tar.gz
 Summary  : A cross-platform cross-radio programming tool
@@ -27,6 +27,7 @@ BuildRequires : pypi-wxPython
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: 0001-Disable-update-check-by-default.patch
 
 %description
 # CHIRP Project
@@ -78,6 +79,7 @@ python3 components for the chirp package.
 %prep
 %setup -q -n chirp-20230322
 cd %{_builddir}/chirp-20230322
+%patch1 -p1
 pushd ..
 cp -a chirp-20230322 buildavx2
 popd
@@ -87,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679943430
+export SOURCE_DATE_EPOCH=1679944788
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

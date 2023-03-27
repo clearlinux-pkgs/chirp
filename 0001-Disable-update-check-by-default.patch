@@ -1,0 +1,31 @@
+From b88544da17a28c9544033cbf74c20cf35c7b594a Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Mon, 27 Mar 2023 12:13:55 -0700
+Subject: [PATCH] Disable update check by default
+
+Since we're managing updates at the OS level, by default don't prompt
+the user to manually update. Simply change the default, so that user
+config (in ~/.chirp/chirp.config) can set the following to re-enable:
+
+[state]
+skip_update_check = False
+---
+ chirp/wxui/main.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chirp/wxui/main.py b/chirp/wxui/main.py
+index 24cd58915ea5..78d5dc6f51d9 100644
+--- a/chirp/wxui/main.py
++++ b/chirp/wxui/main.py
+@@ -1361,7 +1361,7 @@ def display_update_notice(version):
+     if version == CHIRP_VERSION:
+         return
+ 
+-    if CONF.get_bool("skip_update_check", "state"):
++    if CONF.get_bool("skip_update_check", "state", True):
+         return
+ 
+     if CHIRP_VERSION.endswith('dev'):
+-- 
+2.40.0
+
