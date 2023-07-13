@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : chirp
-Version  : 20230322
-Release  : 2
-URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230322/chirp-20230322.tar.gz
-Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230322/chirp-20230322.tar.gz
+Version  : 20230712
+Release  : 3
+URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230712/chirp-20230712.tar.gz
+Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230712/chirp-20230712.tar.gz
 Summary  : A cross-platform cross-radio programming tool
 Group    : Development/Tools
 License  : GPL-3.0
@@ -18,10 +18,8 @@ Requires: chirp-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(future)
 BuildRequires : pypi(pyserial)
-BuildRequires : pypi(pywin32)
 BuildRequires : pypi(requests)
 BuildRequires : pypi(six)
-BuildRequires : pypi(suds)
 BuildRequires : pypi(yattag)
 BuildRequires : pypi-wxPython
 # Suppress stripping binaries
@@ -66,10 +64,8 @@ Group: Default
 Requires: python3-core
 Requires: pypi(future)
 Requires: pypi(pyserial)
-Requires: pypi(pywin32)
 Requires: pypi(requests)
 Requires: pypi(six)
-Requires: pypi(suds)
 Requires: pypi(yattag)
 
 %description python3
@@ -77,11 +73,11 @@ python3 components for the chirp package.
 
 
 %prep
-%setup -q -n chirp-20230322
-cd %{_builddir}/chirp-20230322
-%patch1 -p1
+%setup -q -n chirp-20230712
+cd %{_builddir}/chirp-20230712
+%patch -P 1 -p1
 pushd ..
-cp -a chirp-20230322 buildavx2
+cp -a chirp-20230712 buildavx2
 popd
 
 %build
@@ -89,15 +85,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1679944788
+export SOURCE_DATE_EPOCH=1689279976
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
