@@ -5,7 +5,7 @@
 #
 Name     : chirp
 Version  : 20230803
-Release  : 10
+Release  : 11
 URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230803/chirp-20230803.tar.gz
 Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230803/chirp-20230803.tar.gz
 Summary  : A cross-platform cross-radio programming tool
@@ -15,6 +15,7 @@ Requires: chirp-bin = %{version}-%{release}
 Requires: chirp-license = %{version}-%{release}
 Requires: chirp-python = %{version}-%{release}
 Requires: chirp-python3 = %{version}-%{release}
+Requires: pypi-wxPython
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(future)
 BuildRequires : pypi(pyserial)
@@ -85,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1691073656
+export SOURCE_DATE_EPOCH=1691425151
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
