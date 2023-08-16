@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : chirp
-Version  : 20230814
-Release  : 13
-URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230814/chirp-20230814.tar.gz
-Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230814/chirp-20230814.tar.gz
+Version  : 20230816
+Release  : 14
+URL      : https://trac.chirp.danplanet.com/chirp_next/next-20230816/chirp-20230816.tar.gz
+Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20230816/chirp-20230816.tar.gz
 Summary  : A cross-platform cross-radio programming tool
 Group    : Development/Tools
 License  : GPL-3.0
@@ -74,11 +74,11 @@ python3 components for the chirp package.
 
 
 %prep
-%setup -q -n chirp-20230814
-cd %{_builddir}/chirp-20230814
+%setup -q -n chirp-20230816
+cd %{_builddir}/chirp-20230816
 %patch -P 1 -p1
 pushd ..
-cp -a chirp-20230814 buildavx2
+cp -a chirp-20230816 buildavx2
 popd
 
 %build
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1692023354
+export SOURCE_DATE_EPOCH=1692196476
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
