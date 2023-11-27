@@ -1,0 +1,33 @@
+From 6c452e29ec9857a46fd4826aaaf4d6a78bfbf084 Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Wed, 22 Nov 2023 09:13:09 -0800
+Subject: [PATCH] Remove dependency on future, which doesn't work in Python
+ 3.12
+
+---
+ chirp/chirp_common.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/chirp/chirp_common.py b/chirp/chirp_common.py
+index e7374015708e..e266a4ecd051 100644
+--- a/chirp/chirp_common.py
++++ b/chirp/chirp_common.py
+@@ -14,7 +14,6 @@
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+ from builtins import bytes
+-from future import standard_library
+ 
+ import base64
+ import json
+@@ -1959,7 +1958,6 @@ def http_user_agent():
+ def urlretrieve(url, fn):
+     """Grab an URL and save it in a specified file"""
+ 
+-    standard_library.install_aliases()
+     import urllib.request
+     import urllib.error
+ 
+-- 
+2.43.0
+
