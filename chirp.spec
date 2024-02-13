@@ -6,10 +6,10 @@
 # autospec commit: da8b975
 #
 Name     : chirp
-Version  : 20240211
-Release  : 53
-URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240211/chirp-20240211.tar.gz
-Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240211/chirp-20240211.tar.gz
+Version  : 20240213
+Release  : 54
+URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240213/chirp-20240213.tar.gz
+Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240213/chirp-20240213.tar.gz
 Summary  : A cross-platform cross-radio programming tool
 Group    : Development/Tools
 License  : GPL-3.0
@@ -77,15 +77,12 @@ python3 components for the chirp package.
 
 
 %prep
-%setup -q -n chirp-20240211
-cd %{_builddir}/chirp-20240211
+%setup -q -n chirp-20240213
+cd %{_builddir}/chirp-20240213
 %patch -P 1 -p1
 %patch -P 2 -p1
 pushd ..
-cp -a chirp-20240211 buildavx2
-popd
-pushd ..
-cp -a chirp-20240211 buildapx
+cp -a chirp-20240213 buildavx2
 popd
 
 %build
@@ -93,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1707662447
+export SOURCE_DATE_EPOCH=1707835065
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -116,16 +113,6 @@ CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
-LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
-python3 setup.py build
-
-popd
-pushd ../buildapx/
-CC=gcc-14
-CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -mapxf -mavx10.1 -Wl,-z,x86-64-v3 "
-CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -mapxf -mavx10.1 -Wl,-z,x86-64-v3 "
-FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 -mapxf -mavx10.1 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
 python3 setup.py build
 
@@ -161,17 +148,7 @@ FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
 python3 -tt setup.py build install --root=%{buildroot}-v3
 popd
-pushd ../buildapx/
-CC=gcc-14
-CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -mapxf -mavx10.1 -Wl,-z,x86-64-v3 "
-CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -mapxf -mavx10.1 -Wl,-z,x86-64-v3 "
-FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 -mapxf -mavx10.1 "
-LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
-python3 -tt setup.py build install --root=%{buildroot}-va
-popd
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
-/usr/bin/elf-move.py apx %{buildroot}-va %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
