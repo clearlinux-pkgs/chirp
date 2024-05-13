@@ -1,0 +1,3 @@
+# Patch up chirp's PKG-INFO to point to the right variant of suds
+suds=$(pip list | grep ^suds | head -1 | awk '{print $1}')
+sed -i "s/^\(Requires-Dist: \)suds$/\1${suds}/" %{buildroot}/usr/lib/python*/site-packages/chirp-*-py*.egg-info/PKG-INFO
