@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : chirp
-Version  : 20240504
-Release  : 63
-URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240504/chirp-20240504.tar.gz
-Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240504/chirp-20240504.tar.gz
+Version  : 20240511
+Release  : 64
+URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240511/chirp-20240511.tar.gz
+Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240511/chirp-20240511.tar.gz
 Summary  : A cross-platform cross-radio programming tool
 Group    : Development/Tools
 License  : GPL-3.0
@@ -21,6 +21,7 @@ Requires: pypi-wxPython
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(pyserial)
 BuildRequires : pypi(requests)
+BuildRequires : pypi(suds)
 BuildRequires : pypi(yattag)
 BuildRequires : pypi-wxPython
 # Suppress stripping binaries
@@ -65,6 +66,7 @@ Group: Default
 Requires: python3-core
 Requires: pypi(pyserial)
 Requires: pypi(requests)
+Requires: pypi(suds)
 Requires: pypi(yattag)
 
 %description python3
@@ -72,11 +74,11 @@ python3 components for the chirp package.
 
 
 %prep
-%setup -q -n chirp-20240504
-cd %{_builddir}/chirp-20240504
+%setup -q -n chirp-20240511
+cd %{_builddir}/chirp-20240511
 %patch -P 1 -p1
 pushd ..
-cp -a chirp-20240504 buildavx2
+cp -a chirp-20240511 buildavx2
 popd
 
 %build
@@ -84,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1715004103
+export SOURCE_DATE_EPOCH=1715612103
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -151,6 +153,7 @@ popd
 %defattr(-,root,root,-)
 /usr/bin/chirp
 /usr/bin/chirpc
+/usr/bin/experttune
 
 %files license
 %defattr(0644,root,root,0755)
