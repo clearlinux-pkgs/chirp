@@ -7,7 +7,7 @@
 #
 Name     : chirp
 Version  : 20240511
-Release  : 66
+Release  : 67
 URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240511/chirp-20240511.tar.gz
 Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240511/chirp-20240511.tar.gz
 Summary  : A cross-platform cross-radio programming tool
@@ -27,6 +27,7 @@ BuildRequires : pypi-wxPython
 %define __strip /bin/true
 %define debug_package %{nil}
 Patch1: 0001-Disable-update-check-by-default.patch
+Patch2: backport-Use-the-suds-community-fork.patch
 
 %description
 # CHIRP Project
@@ -77,6 +78,7 @@ python3 components for the chirp package.
 %setup -q -n chirp-20240511
 cd %{_builddir}/chirp-20240511
 %patch -P 1 -p1
+%patch -P 2 -p1
 pushd ..
 cp -a chirp-20240511 buildavx2
 popd
@@ -86,7 +88,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1715618314
+export SOURCE_DATE_EPOCH=1715637594
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

@@ -1,1 +1,3 @@
 0001-Disable-update-check-by-default.patch
+#backport-Remove-dependency-on-future-which-doesn-t-work-in-Py.patch
+backport-Use-the-suds-community-fork.patch
