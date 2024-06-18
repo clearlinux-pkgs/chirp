@@ -6,10 +6,10 @@
 # autospec commit: fbcebd0
 #
 Name     : chirp
-Version  : 20240614
-Release  : 72
-URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240614/chirp-20240614.tar.gz
-Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240614/chirp-20240614.tar.gz
+Version  : 20240618
+Release  : 73
+URL      : https://trac.chirp.danplanet.com/chirp_next/next-20240618/chirp-20240618.tar.gz
+Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20240618/chirp-20240618.tar.gz
 Summary  : A cross-platform cross-radio programming tool
 Group    : Development/Tools
 License  : GPL-3.0
@@ -74,11 +74,11 @@ python3 components for the chirp package.
 
 
 %prep
-%setup -q -n chirp-20240614
-cd %{_builddir}/chirp-20240614
+%setup -q -n chirp-20240618
+cd %{_builddir}/chirp-20240618
 %patch -P 1 -p1
 pushd ..
-cp -a chirp-20240614 buildavx2
+cp -a chirp-20240618 buildavx2
 popd
 
 %build
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1718374762
+export SOURCE_DATE_EPOCH=1718723518
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
