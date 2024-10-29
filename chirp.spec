@@ -7,7 +7,7 @@
 #
 Name     : chirp
 Version  : 20241025
-Release  : 88
+Release  : 89
 URL      : https://trac.chirp.danplanet.com/chirp_next/next-20241025/chirp-20241025.tar.gz
 Source0  : https://trac.chirp.danplanet.com/chirp_next/next-20241025/chirp-20241025.tar.gz
 Summary  : A cross-platform cross-radio programming tool
